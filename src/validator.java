@@ -8,21 +8,19 @@ public class validator {
         this.confirmPassword = confirmPassword;
     }
 
-    public void validateLogin() throws WrongLoginException {
-        try {
-            if (!(this.login.length() > 20) || !this.login.matches("[a-zA-Z0-9_]+")) {
-                throw new WrongLoginException("Invalid login");
-            }
-            if (!(this.password.length() > 20) || !this.password.matches("[a-zA-Z0-9_]+")) {
-                throw new WrongPasswordException("Invalid password");
-            }
+    public void validateLogin() throws WrongLoginException{
+        if (!(this.login.length() > 20) || !this.login.matches("[a-zA-Z0-9_]+")) {
+            throw new WrongLoginException("Invalid login");
+        }
+    }
+    public void validatePassword() throws WrongPasswordException {
 
-            if (!this.password.equals(this.confirmPassword)) {
-                throw new WrongPasswordException("Invalid passwords");
-            }
+        if (!(this.password.length() > 20) || !this.password.matches("[a-zA-Z0-9_]+")) {
+            throw new WrongPasswordException("Invalid password");
+        }
 
-        } catch (WrongLoginException | WrongPasswordException e) {
-            throw new RuntimeException(e);
+        if (!this.password.equals(this.confirmPassword)) {
+            throw new WrongPasswordException("Invalid passwords");
         }
     }
 }
